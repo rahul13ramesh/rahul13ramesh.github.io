@@ -4,7 +4,7 @@
  <title>Rahul Ramesh</title>
  <link href="https://rahulramesh.infohttps://rahulramesh.info/atom.xml" rel="self"/>
  <link href="https://rahulramesh.infohttps://rahulramesh.info/"/>
- <updated>2022-07-01T14:38:10-04:00</updated>
+ <updated>2022-07-01T14:47:21-04:00</updated>
  <id>https://rahulramesh.info</id>
  <author>
    <name>Rahul Ramesh</name>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>Model Zoos for Continual Learning</title>
-   <link href="https://rahulramesh.info/modelzoo/"/>
+   <link href="https://rahulramesh.info/blog/modelzoo/"/>
    <updated>2022-06-24T00:00:00-04:00</updated>
-   <id>https://rahulramesh.infohttps://rahulramesh.info/modelzoo</id>
+   <id>https://rahulramesh.infohttps://rahulramesh.info/blog/modelzoo</id>
    <content type="html">&lt;p&gt;Consider two tasks: a classification problem between strawberries and
 raspberries and another classification problem between oranges and bananas. The
 two tasks are similar and share information relevant to classification. If we can
