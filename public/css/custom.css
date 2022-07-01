@@ -1,0 +1,60 @@
+.button1 {
+  text-align: center;
+  box-sizing: border-box: 
+  background: white;
+  background-color: white;
+  border-color: var(--global-text-color);
+  border-radius: 5px;
+  color: var(--global-text-color);
+  border: 1px solid;
+  padding-left: 0.35rem;
+  padding-right: 0.35rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  margin-left: 0rem;
+  margin-right: 0rem;
+  cursor: pointer;
+}
+
+.button1:hover {
+  transform: translateY(-0.10em);
+}
+
+.pubtitle {
+    font-weight: bolder;
+}
+
+.pubconf {
+    opacity: 75%;
+}
+
+.pubtex {
+    overflow-x:scroll;
+    white-space: pre;
+}
+
+.command-copy {
+  position:absolute;
+  top:-0.4rem;
+  right:0.2rem;
+}
+
+.caption {
+    color: #686868;
+    text-align: justify;
+}
+
+.imgcaption {
+    margin: 2em;
+}
+
+.imgcenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a.darklink {
+   color: var(--global-text-color) !important;
+}
+

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Rahul Ramesh</title>
+ <link href="https://rahulramesh.infohttps://rahulramesh.info/atom.xml" rel="self"/>
+ <link href="https://rahulramesh.infohttps://rahulramesh.info/"/>
+ <updated>2022-07-01T14:25:43-04:00</updated>
+ <id>https://rahulramesh.info</id>
+ <author>
+   <name>Rahul Ramesh</name>
+   <email></email>
+ </author>
+
+ 
+ <entry>
+   <title>Model Zoos for Continual Learning</title>
+   <link href="https://rahulramesh.info/blog/research/modelzoo/"/>
+   <updated>2022-06-24T00:00:00-04:00</updated>
+   <id>https://rahulramesh.infohttps://rahulramesh.info/blog/research/modelzoo</id>
+   <content type="html">&lt;p&gt;Consider two tasks: a classification problem between strawberries and
+raspberries and another classification problem between oranges and bananas. The
+two tasks are similar and share information relevant to classification. If we can
+exploit this information, we can achieve lower generalization errors and
+better sample complexities on both these tasks. This motivates us to explore
+models that train on multiple tasks.&lt;/p&gt;
+
+&lt;p&gt;Caruana’s model &lt;a class=&quot;citation&quot; href=&quot;#caruana_mtl&quot;&gt;(1997)&lt;/a&gt; is the most popular
+choice, when we want to learn from multiple tasks. It relies on learning a
+shared representation function \(f\) across all the tasks. The output of the
+function \(f\) is used as input to a task-specific classification layer
+\(g_i\), to generate predictions for task \(i\). Formally, the classifier for
+task \(i\) is
+\begin{equation}
+    h_i := g_i \circ f. \nonumber
+\end{equation}&lt;/p&gt;
+
+&lt;p&gt;In order to tackle our earlier example, we need to learn a single representation \(f\)
+for oranges, bananas, strawberries and raspberries. For example, we can learn \(f\)
+using a Resnet backbone. The learnable parameters of \(f\) usually make up most
+of the parameters in the network since it helps us achieve better sample
+complexity bounds &lt;a class=&quot;citation&quot; href=&quot;#baxter_inductive&quot;&gt;(Baxter 2000)&lt;/a&gt;. In addition, we need to learn
+\(g_1\) and \(g_2\), which are linear layers attached to the Resnet backbone.
+\(g_1\) is used to identify if the image is a strawberry or a raspberry and
+\(g_2\) is used to determine if the image is a banana or orange.&lt;/p&gt;
+
+&lt;div class=&quot;imgcaption&quot;&gt;
+    &lt;div style=&quot;width: 30%;&quot; class=&quot;imgcenter&quot;&gt;
+        &lt;img src=&quot;https://rahulramesh.info/public/imgs/modelzoo/mtl.png&quot; alt=&quot;Multi-task Model&quot; /&gt;
+    &lt;/div&gt;
+    &lt;span class=&quot;caption&quot;&gt; &lt;em&gt;The multi-task model proposed by Rich Caruana continues 
+    to remain the most popular architecture when we want to learn from multiple
+    tasks; This includes areas like multi-task learning, meta-learning or
+    continual learning. The model is trained to minimize the sum of losses on
+    all the tasks.&lt;/em&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;p&gt;We assume that we know if each image belongs to task 1 or task 2. This helps us
+choose the right output head for each input. The model need not distinguish
+between a class from task-1 and another class from task-2. For example, the 
+model need not distinguish between strawberries and oranges since the two
+classes are from different tasks.&lt;/p&gt;
+
+&lt;p&gt;Task-incremental continual learning &lt;a class=&quot;citation&quot; href=&quot;#van2019three&quot;&gt;(Van de Ven and Tolias 2019)&lt;/a&gt; studies the problem
+of learning on a sequence of tasks. The continual learner observes data from
+a new task after every “episode” of continual learning. We seek low
+generalization errors on all tasks, observed until the current episode. To
+achieve this goal, we should leverage information from past tasks, to generalize
+better on new tasks and simultaneously use information from the new tasks, to
+improve on past tasks.&lt;/p&gt;
+
+&lt;p&gt;What does a typical continual learner look like? Most methods train a single
+network — one that looks like Caruana’s multi-task model — on a sequence of
+tasks. At every episode, the network learns to tackle the new task while trying
+to maintain its ability to address past tasks. The latter is enforced using
+auxiliary losses or constraints on the gradients.&lt;/p&gt;
+
+&lt;h2 id=&quot;task-competition&quot;&gt;Task Competition&lt;/h2&gt;
+
+&lt;p&gt;Caruana’s model assumes that &lt;em&gt;all tasks&lt;/em&gt; share a single representation \(f\).
+This assumption requires all tasks to be similar to each other, which is less
+likely to be true if we have a large number of tasks. Yet, this model continues
+to remain the most popular choice architecture, even if we have to tackle many
+tasks, like in continual learning.&lt;/p&gt;
+
+&lt;p&gt;Under Caruana’s multi-task model, we see that tasks can both help and hurt each
+other. The below matrix is representative of distances between
+every pair of tasks. It is the decrease (red) or increase (green) in
+accuracy when we train two tasks together, compared to training on a single
+task. Clearly, not all pairs of tasks benefit each other – evident from the
+red cells in the matrix.&lt;/p&gt;
+
+&lt;div class=&quot;imgcaption&quot;&gt;
+    &lt;div style=&quot;width: 55%;&quot; class=&quot;imgcenter&quot;&gt;
+        &lt;img src=&quot;https://rahulramesh.info/public/imgs/modelzoo/task_corr.svg&quot; alt=&quot;Task Distances&quot; /&gt;
+    &lt;/div&gt;
+    &lt;span class=&quot;caption&quot;&gt; &lt;em&gt;The matrix is representative of task distances on 20 5-way
+    classification tasks constructed from the CIFAR-100 dataset; Each cell is
+    the relative change in accuracy when we train on two tasks as opposed to
+    one task. Ideally, we should use this matrix to determine which tasks
+    should be trained together. However, estimating this distance matrix is
+    expensive, particularly in continual learning, where all tasks are not
+    available a priori.&lt;/em&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;p&gt;We &lt;a class=&quot;citation&quot; href=&quot;#modelzoo&quot;&gt;(Ramesh and Chaudhari 2022)&lt;/a&gt; formalize this idea using the task-competition
+theorem. We show that dissimilar tasks fight over the model’s capacity and they
+benefit from being trained on separate models. This observation inspires 
+us to build Model Zoo, which is capable of expanding its model capacity to
+accommodate dissimilar tasks.&lt;/p&gt;
+
+&lt;h2 id=&quot;model-zoo&quot;&gt;Model Zoo&lt;/h2&gt;
+
+&lt;p&gt;Model Zoo &lt;a class=&quot;citation&quot; href=&quot;#modelzoo&quot;&gt;(Ramesh and Chaudhari 2022)&lt;/a&gt; is a set of models where each model is trained on a subset of tasks.
+In the continual learning setup, we add 1 model to the zoo  after every
+episode. The model is trained on the new task and a subset of the past tasks
+(around 2-4). After \(T\) episodes, Model Zoo is consists of an ensemble of
+\(T\) models, which are each trained on a subset of tasks.&lt;/p&gt;
+
+&lt;div class=&quot;imgcaption&quot;&gt;
+    &lt;div style=&quot;width: 70%;&quot; class=&quot;imgcenter&quot;&gt;
+        &lt;img src=&quot;https://rahulramesh.info/public/imgs/modelzoo/zoo.svg&quot; alt=&quot;Model Zoo&quot; /&gt;
+    &lt;/div&gt;
+    &lt;span class=&quot;caption&quot;&gt; &lt;em&gt;The above figure depicts one episode of Model Zoo training.
+    The training loss (at the top of the figure) is computed using the first
+    two learners. The training loss is used to determine which tasks should be
+    trained together in the third model.&lt;/em&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The zoo’s output for a particular task is computed by averaging the outputs
+of all models trained on that task. For example, the output of the green task
+is the average of the green output heads of the first two models. The outputs of the
+orange and yellow tasks can be computed using a single model (orange head of
+the second model and yellow head of the third model respectively).&lt;/p&gt;
+
+&lt;p&gt;Identifying related sets of tasks is the most important component of the
+zoo; This determines which tasks are trained together.  Often, figuring out the
+relatedness tasks is as expensive as training on those tasks. For continual
+learning, we seek an inexpensive proxy for the distance between tasks, in order
+to split the tasks into related subsets.&lt;/p&gt;
+
+&lt;p&gt;Inspired by Adaboost, we use the training losses of the tasks to identify
+which tasks should be trained together. We add a learner to the zoo, which is
+trained on tasks with high training losses similar to how a Adaboost trains
+learners on samples with high training errors. Even if the zoo performs poorly
+on some tasks at episode \(T\), it has the ability to correct itself in future
+episodes.&lt;/p&gt;
+
+&lt;h2 id=&quot;evaluating-the-zoo&quot;&gt;Evaluating the Zoo&lt;/h2&gt;
+
+&lt;p&gt;Continual learning has many formulations which makes it hard to compare
+different methods. They vary on factors like model storage, sample storage
+or compute. Methods typically either store no data from previous tasks, or use
+a limited replay buffer to store a fraction (around 5-10%) of the data from
+previous tasks. Catastrophic forgetting — a tendency of the model to rapidly
+forget the solution to past tasks — is commonly observed in these settings and
+addressing this, is the primary focus of most existing methods.&lt;/p&gt;
+
+&lt;p&gt;In our work, we show that a learner that shares no information between the
+tasks i.e., it does no real continual learning, performs better than existing
+methods. We call this method &lt;em&gt;Isolated&lt;/em&gt; in our work. Isolated has low training times 
+and uses no replay buffer but grows it model capacity linearly with the number
+of tasks. Existing methods scale well with respect to model size, but fail to
+achieve good generalization errors.&lt;/p&gt;
+
+&lt;div class=&quot;imgcaption&quot;&gt;
+    &lt;div style=&quot;width: 65%;&quot; class=&quot;imgcenter&quot;&gt;
+        &lt;img src=&quot;https://rahulramesh.info/public/imgs/modelzoo/isolated_acc.svg&quot; alt=&quot;Isolated&quot; /&gt;
+    &lt;/div&gt;
+    &lt;span class=&quot;caption&quot;&gt; &lt;em&gt;In the above plot, we track the accuracy averaged over all
+    tasks, over 20 episodes of continual learning. Different methods are
+    evaluated in the single-epoch setting where the model is allowed one epoch of
+    training, at every episode of continual learning. Regardless of the
+    architecture (a small convolution network or Resnet18-S), Isolated
+    outperforms other methods. This indicates that existing methods fail to
+    transfer between different tasks. We find a similar trend in the
+    multi-epoch setting too.&lt;/em&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Model Zoo on the other hand, is able to outperform the Isolated baseline. It
+improves on previous tasks (backward transfer) and has an improved ability to
+solve new tasks (forward transfer). The zoo has low training and inference
+times compared to other methods but grows its model capacity at every
+episode and uses a replay buffer.&lt;/p&gt;
+
+&lt;div class=&quot;imgcaption&quot;&gt;
+    &lt;div style=&quot;width: 65%;&quot; class=&quot;imgcenter&quot;&gt;
+        &lt;img src=&quot;https://rahulramesh.info/public/imgs/modelzoo/modelzoo_fwd_bwd.svg&quot; alt=&quot;Isolated&quot; /&gt;
+    &lt;/div&gt;
+    &lt;span class=&quot;caption&quot;&gt; &lt;em&gt;We track the accuracy of each task from the
+    Split-MiniImagenet dataset which consists of 20 5-way classification
+    problems. &apos;X&apos;, which denote the accuracy of Isolated on a new task, is
+    usually lower accuracy than Model Zoo&apos;s accuracy on the same task when it
+    is first seen. Additionally, the accuracy of past tasks improve over
+    episodes of continual learning.&lt;/em&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Model Zoo shows that growing the capacity of the model, can help us build
+effective continual learners. If you are interested in exploring Model Zoos,
+consider checking out our &lt;a href=&quot;https://arxiv.org/abs/2106.03027&quot;&gt;ICLR 22 paper&lt;/a&gt; or
+this &lt;a href=&quot;https://colab.research.google.com/github/rahul13ramesh/modelzoo_continual/blob/main/modelzoo_minimal.ipynb&quot;&gt;jupyter
+notebook&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ol class=&quot;bibliography&quot;&gt;&lt;li&gt;
+    &lt;a class=&quot;darklink&quot; href=&quot;https://link.springer.com/article/10.1023/A:1007379606734&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;
+        &lt;span id=&quot;caruana_mtl&quot;&gt;Caruana, Rich. 1997. “Multitask Learning.” &lt;i&gt;Machine Learning&lt;/i&gt; 28 (1): 41–75.&lt;/span&gt;
+    &lt;/a&gt;
+
+&lt;/li&gt;
+&lt;li&gt;
+    &lt;span id=&quot;baxter_inductive&quot;&gt;Baxter, Jonathan. 2000. “A Model of Inductive Bias Learning.” &lt;i&gt;Journal of Artificial Intelligence Research&lt;/i&gt; 12: 149–98.&lt;/span&gt;
+
+&lt;/li&gt;
+&lt;li&gt;
+    &lt;span id=&quot;van2019three&quot;&gt;Ven, Gido M Van de, and Andreas S Tolias. 2019. “Three Scenarios for Continual Learning.” &lt;i&gt;ArXiv Preprint ArXiv:1904.07734&lt;/i&gt;.&lt;/span&gt;
+
+&lt;/li&gt;
+&lt;li&gt;
+    &lt;a class=&quot;darklink&quot; href=&quot;https://openreview.net/forum?id=WfvgGBcgbE7&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;
+        &lt;span id=&quot;modelzoo&quot;&gt;Ramesh, Rahul, and Pratik Chaudhari. 2022. “Model Zoo: A Growing Brain That Learns Continually.” In &lt;i&gt;International Conference on Learning Representations&lt;/i&gt;.&lt;/span&gt;
+    &lt;/a&gt;
+
+&lt;/li&gt;&lt;/ol&gt;
+
+</content>
+ </entry>
+ 
+
+</feed>
