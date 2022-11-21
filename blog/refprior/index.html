@@ -11,7 +11,7 @@
 
 	<title>
 		
-            Rahul's Blog
+            Rahul's Blog | Reference Priors for Pre-training Neural Nets
 		
 	</title>
 
@@ -32,6 +32,11 @@
 	<!-- RSS -->
 	<link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
     <!-- KaTeX -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
     
 </head>
 
@@ -63,7 +68,7 @@
     
 	  
 		  
-          <a class="sidebar-nav-item active" href="https://rahulramesh.info/blog/">Blog</a>
+          <a class="sidebar-nav-item" href="https://rahulramesh.info/blog/">Blog</a>
 		  
       
     
@@ -88,52 +93,56 @@
         <div class="container">
           <h2 class="masthead-title">
 			 
-                  Rahul's Blog
+                 <a href="/blog" style="color:#313131;">
+                     Rahul's Blog
+                 </a>
 			 
           </h2>
         </div>
       </div>
 
       <div class="container content">
-        <div class="posts">
-  <div class="post">
-    <!-- <h2 class="post-title"> -->
-    <!--     Research -->
-    <!-- </h2> -->
-	 <ol>
-	  
-		  
-		  <li>
-              <a href="/blog/refprior.md/">
-				  Deep Reference Priors for Pre-training
-			  </a>
-		  </li>
-		  
-	  
-		  
-		  <li>
-              <a href="/blog/refprior/">
-				  Reference Priors for Pre-training Neural Nets
-			  </a>
-		  </li>
-		  
-	  
-		  
-		  <li>
-              <a href="/blog/modelzoo/">
-				  Model Zoos for Continual Learning
-			  </a>
-		  </li>
-		  
-	  
-		  <li>
-              <a href="https://www.t5eiitm.org/successor-options-a-skill-discovery-framework-for-reinforcemment-learning/">
-                  Successor Options for Reinforcement Learning
-			  </a>
-		  </li>
-	</ol> 
-  </div>
+        <div class="post">
+	<h1 id="type-title" class="post-title">Reference Priors for Pre-training Neural Nets</h1>
+	<span class="post-date">14 Jul 2022</span>
+	<p>We start with the problem of estimating the bias of a coin. 
+We know that we will receive \(n\) data points</p>
+
+<p>We maximize the information brought by the data.</p>
+
+<p>We want to tackle a supervised learning task with limited amounts of data. In
+addition, we have unlabeled data from the same distribution. Can we learn a useful prior from unlabeled data, such that</p>
+
+<p>In
+this blog post, we seek a prior – or a probability distribution over the
+model’s weights – from unlabeled data. The prior is selected to work with small amounts of labeled data</p>
+
+<p>We want to leverage this prior on small amounts of labeled data. How do we optimally leverage this limited information. We consider the problem of estimating</p>
+
+<p>To do so, we would like to restrict the model space</p>
+
+<h2 id="uniformative-priors">Uniformative Priors</h2>
+
+<h2 id="resources">Resources:</h2>
+<ul>
+  <li>https://www.youtube.com/watch?v=pNkeDdFs0QQ</li>
+  <li>Mattingly</li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<ol class="bibliography"></ol>
+
 </div>
+
+<script src="https://utteranc.es/client.js"
+        repo="rahul13ramesh/utterance_comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+<br>
 
       </div>
     </div>

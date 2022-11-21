@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+	<link href="http://gmpg.org/xfn/11" rel="profile">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+	<!-- Enable responsiveness on mobile devices-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+	<title>
+		
+            Rahul's Blog | Deep Reference Priors for Pre-training
+		
+	</title>
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="https://rahulramesh.info/public/css/poole.css">
+	<link rel="stylesheet" href="https://rahulramesh.info/public/css/syntax.css">
+	<link rel="stylesheet" href="https://rahulramesh.info/public/css/lanyon.css">
+	<link rel="stylesheet" href="https://rahulramesh.info/public/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://rahulramesh.info/public/css/custom.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="https://rahulramesh.info/public/favicon.ico">
+
+	<!-- RSS -->
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+    <!-- KaTeX -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
+    
+</head>
+
+
+  <body class="theme-base-0d">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar .theme-base-08" id="sidebar">
+  <div class="sidebar-item">
+    <p></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="https://rahulramesh.info/">Home</a>
+
+    
+    
+	  
+    
+	  
+		  
+      
+    
+	  
+    
+	  
+		  
+          <a class="sidebar-nav-item" href="https://rahulramesh.info/blog/">Blog</a>
+		  
+      
+    
+	  
+    
+	  
+    
+	<div class="sidebar-nav-item">
+	<a href="https://twitter.com/RahulRam3sh" target="_blank" class="fa fa-twitter"></a>
+	<a href="https://github.com/rahul13ramesh" target="_blank" class="fa fa-github-alt"></a>
+	<a href="https://scholar.google.com/citations?user=wCa6nygAAAAJ" target="_blank" class="fa fa-mortar-board"></a>
+    <a href="/atom.xml" class="fa fa-rss"></a>
+	</div>
+  </nav>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h2 class="masthead-title">
+			 
+                 <a href="/blog" style="color:#313131;">
+                     Rahul's Blog
+                 </a>
+			 
+          </h2>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+	<h1 id="type-title" class="post-title">Deep Reference Priors for Pre-training</h1>
+	<span class="post-date">14 Jul 2022</span>
+	How do we pre-train a model using unlabeled data? In this blog post, we tackle
+this question by adopting the bayesian perspective; Probabilities are used to
+represent a state of knowledge. Instead of learning a single
+pre-trained model, we learn a prior -- or a probability distribution over the
+model's parameters.
+
+It is instructive to consider a specific example: estimating the bias of a
+coin. A prior is used to quantify our belief about the coin's bias before we
+observe any data. It is common to represent this prior using a beta
+distribution. If we believe that the coin is unbiased, then we can encode this
+belief using a beta-distribution with $$\alpha=\beta$$.
+
+<div class="imgcaption">
+    <div style="width: 50%;" class="imgcenter">
+        <img src="/public/imgs/refprior/beta_distribution.gif" alt="beta distribution">
+    </div>
+    <span class="caption"> <em>The beta distribution can be used to represent the prior for
+    the bias of a coin. When alpha=2 and beta=5, the prior represents the belief that the coin is biased towards tails.</em></span>
+</div>
+
+
+
+## Uniformative Priors
+
+It is hard to determine what the prior should be in many instances -- an issue
+that dates back to the likes of Bayes and Laplace. Revisiting our earlier
+example, we may not have any particular belief regarding the bias of the coin.
+How do we represent a *state of ignorance*?
+
+A natural choice for the prior is a uniform distribution over model's
+parameters motivated by Laplace's principle for insufficient reason. This would
+correspond to a uniform distribution over the interval $$[0, 1]$$, for the bias
+of the coin. While the uniform prior seems like a reasonable choice, it is not
+considered an uninformative prior (a prior that attempts to codify ignorance).
+
+Ideally, an uninformative prior should be invariant to re-parameterizations,
+which is the most common criticism levied against uniform priors. Let us
+consider the problem of estimating the variance of a Gaussian random variable
+$$X = \mathcal{N}(0, \sigma^2)$$ with a uniform prior. We can estimate both
+$$\sigma$$ and $$\log \sigma$$, both of which are reasonable choices. However,
+the resulting posterior will look different depending on the choice of
+parameterization. A uniform prior over $$\sigma$$ assigns a larger probability
+mass to values near $$\infty$$ compared to a uniform prior for $$\log \sigma$$.
+The uniform prior is often informative, which is not desirable.
+
+The key idea behind uniformative priors is to operate in probability space, as
+opposed to the parameter space. If we have a probability model
+$$p_{w}(z)$$, then it is easier to specify priors using conditions on
+$$p_{w}$$ as opposed to conditions on $$w$$. The Jeffrey's prior is a
+popular uniformative prior that is uniform in probability space. In this blog,
+we will focus on another closely related uninformative prior.
+
+## Reference Priors
+
+Reference priors <a class="citation" href="#bernardo1979reference">(Bernardo 1979)</a> are based on the guiding
+principle that *the data should dominate the posterior -- not the prior*. A
+prior that maximizes the KL-divergence with the posterior allows the data to be
+maximally informative. We codify this idea through a maximization problem --
+the solution to which is the reference prior.
+
+Let $$Z$$ be a random variable that represents the data, and let $$w$$
+be the parameters of the model. Additionally, let $$T(Z)$$ be a sufficient
+statistic for $$w$$. A sufficient statistic summarizes the information from the
+entire random sample of $$Z$$. Estimating $$w$$ using the entire random sample
+is identical to estimating $$w$$ using just the sufficient statistic $$T$$.
+
+The reference prior $$\pi^*$$ maximizes the KL-divergence between the prior and
+the posterior, averaged over distribution $$p(t)$$ of the sufficient statistic:
+\begin{equation}
+    \pi^* :=  \argmax_{\pi} \ \ \mathbb{E}_{t}  \left[ KL(p(w \mid t) \mid \pi(w)) \right]
+\end{equation}
+Equation (1) is also the mutual information between $$w$$ and $$t$$.
+Intuitively, the prior maximizes the information that is missing between $$w$$
+and $$t$$. The reference prior is invariant to re-parameterizations of $$w$$
+since it is defined using the mutual information.
+
+However, we do not know $$t$$ for most problems, making Equation (1)
+computationally intractable. Bernado proposed estimating $$\pi^*$$ as a limit
+of a sequence, i.e.
+\begin{equation}
+    \pi^* :=  \lim_{n \rightarrow \infty} \pi^n = \lim_{n \rightarrow \infty} \argmax_{\pi} \ \ \mathbb{E}_{z^n}  \left[ KL(p(w \mid z^n) \mid \pi(w)) \right]
+\end{equation}
+where $$z^n$$ represents $$n$$-random samples of $$Z$$. $$\pi^n$$ is called the
+$$n$$-reference prior where $$n$$ is the order.
+
+
+Priors are computed without any data or evidence. This is also true for the
+reference prior. The objective for the $$n$$-reference prior depends on the
+posterior $$p(w \mid z^n)$$. However, the posterior is computed using samples
+that were synthesized by the model and does not use data. In particular, we
+consider the "imagined" data distribution
+\begin{equation}
+    p(z) = \int p(z \mid w) \pi(w)  \ \text{d} w, \notag
+\end{equation}
+when we compute the expectation in the reference prior.
+
+$$n$$-reference priors are supported on a finite number of points in 
+<a class="citation" href="#zhang1994discrete">(Zhang 1994)</a>, i.e. 
+\begin{equation}
+    \pi^n(w) = \sum_{i=1}^K  p_i \delta_{w_i}. \notag
+\end{equation}
+This intuitively holds since the dataset $$z^n$$ is finite. We revisit the
+coin-tossing example and visualize the $$n$$-reference prior for different
+orders $$n$$. For $$n=1$$, the prior is a uniform probability over two points
+$$p=0$$ and $$p=1$$. If we have only one sample, then the 1-reference prior assigns probability masses to the two possible outcomes, thereby maximizing the information gained from the data.
+
+<div class="imgcaption">
+    <div style="width: 30%;" class="imgcenter">
+        <img src="/public/imgs/refprior/coin_n1.png" alt="ref prior n=1">
+    </div>
+    <span class="caption"> <em></em></span>
+</div>
+
+
+<div class="imgcaption">
+    <div style="width: 30%;" class="imgcenter">
+        <img src="/public/imgs/refprior/coin_n10.png" alt="ref prior n=10">
+    </div>
+    <span class="caption"> <em>We compute the n-reference prior for orders n=1 (top) and n=10 (bottom) for the coin-tossing example. The priors are supported on a discrete set of points.</em></span>
+</div>
+
+
+## Deep Reference Priors
+
+How do we compute the reference prior using neural networks for the model
+family.
+
+
+## Resources:
+* https://www.youtube.com/watch?v=pNkeDdFs0QQ
+* Mattingly
+
+
+## References
+
+<ol class="bibliography"><li>
+    <span id="bernardo1979reference">Bernardo, Jose M. 1979. “Reference Posterior Distributions for Bayesian
+		  Inference.” <i>Journal of the Royal Statistical Society: Series B
+		  (Methodological)</i> 41 (2): 113–28.</span>
+
+</li>
+<li>
+    <span id="zhang1994discrete">Zhang, Zhongxin. 1994. “Discrete Noninformative Priors.” PhD thesis, Yale University.</span>
+
+</li></ol>
+
+</div>
+
+<script src="https://utteranc.es/client.js"
+        repo="rahul13ramesh/utterance_comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+<br>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+
+  </body>
+</html>
