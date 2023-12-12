@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>Rahul Ramesh</title>
- <link href="http://localhost:4000/atom.xml" rel="self"/>
- <link href="http://localhost:4000/"/>
- <updated>2023-12-12T00:13:54-05:00</updated>
- <id>http://localhost:4000</id>
+ <link href="https://rahulramesh.info/atom.xml" rel="self"/>
+ <link href="https://rahulramesh.info/"/>
+ <updated>2023-12-12T00:42:01-05:00</updated>
+ <id>https://rahulramesh.info</id>
  <author>
    <name>Rahul Ramesh</name>
    <email></email>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>Deep Reference Priors for Pre-training</title>
-   <link href="http://localhost:4000/blog/refprior.md/"/>
+   <link href="https://rahulramesh.info/blog/refprior.md/"/>
    <updated>2022-07-14T00:00:00-04:00</updated>
-   <id>http://localhost:4000/blog/refprior.md</id>
+   <id>https://rahulramesh.info/blog/refprior.md</id>
    <content type="html">How do we pre-train a model using unlabeled data? In this blog post, we tackle
 this question by adopting the bayesian perspective; Probabilities are used to
 represent a state of knowledge. Instead of learning a single
@@ -167,9 +167,9 @@ family.
  
  <entry>
    <title>Reference Priors for Pre-training Neural Nets</title>
-   <link href="http://localhost:4000/blog/refprior/"/>
+   <link href="https://rahulramesh.info/blog/refprior/"/>
    <updated>2022-07-14T00:00:00-04:00</updated>
-   <id>http://localhost:4000/blog/refprior</id>
+   <id>https://rahulramesh.info/blog/refprior</id>
    <content type="html">&lt;p&gt;We start with the problem of estimating the bias of a coin. 
 We know that we will receive \(n\) data points&lt;/p&gt;
 
@@ -202,9 +202,9 @@ model’s weights – from unlabeled data. The prior is selected to work with sm
  
  <entry>
    <title>Model Zoos for Continual Learning</title>
-   <link href="http://localhost:4000/blog/modelzoo/"/>
+   <link href="https://rahulramesh.info/blog/modelzoo/"/>
    <updated>2022-06-24T00:00:00-04:00</updated>
-   <id>http://localhost:4000/blog/modelzoo</id>
+   <id>https://rahulramesh.info/blog/modelzoo</id>
    <content type="html">&lt;p&gt;Consider two tasks: a classification problem between strawberries and
 raspberries and another classification problem between oranges and bananas. The
 two tasks are similar and share information relevant to classification. If we can
