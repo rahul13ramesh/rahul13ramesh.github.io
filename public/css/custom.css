@@ -58,3 +58,11 @@ a.darklink {
    color: var(--global-text-color) !important;
 }
 
+.profile-image {
+  width: 90%; /* Adjust the size of the profile image */
+  max-width: 180px;
+  height: auto;
+  border-radius: 80%; /* This creates a circular shape */
+  display: block;
+  float: right;
+}
