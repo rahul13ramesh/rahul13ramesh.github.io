@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>Rahul Ramesh</title>
- <link href="https://rahulramesh.infohttps://rahulramesh.info/atom.xml" rel="self"/>
- <link href="https://rahulramesh.infohttps://rahulramesh.info/"/>
- <updated>2023-07-28T13:13:51-04:00</updated>
- <id>https://rahulramesh.info</id>
+ <link href="http://localhost:4000/atom.xml" rel="self"/>
+ <link href="http://localhost:4000/"/>
+ <updated>2023-12-12T00:13:54-05:00</updated>
+ <id>http://localhost:4000</id>
  <author>
    <name>Rahul Ramesh</name>
    <email></email>
@@ -14,24 +14,24 @@
  
  <entry>
    <title>Deep Reference Priors for Pre-training</title>
-   <link href="https://rahulramesh.info/blog/refprior.md/"/>
+   <link href="http://localhost:4000/blog/refprior.md/"/>
    <updated>2022-07-14T00:00:00-04:00</updated>
-   <id>https://rahulramesh.infohttps://rahulramesh.info/blog/refprior.md</id>
+   <id>http://localhost:4000/blog/refprior.md</id>
    <content type="html">How do we pre-train a model using unlabeled data? In this blog post, we tackle
 this question by adopting the bayesian perspective; Probabilities are used to
 represent a state of knowledge. Instead of learning a single
 pre-trained model, we learn a prior -- or a probability distribution over the
-model&apos;s parameters.
+model's parameters.
 
 It is instructive to consider a specific example: estimating the bias of a
-coin. A prior is used to quantify our belief about the coin&apos;s bias before we
+coin. A prior is used to quantify our belief about the coin's bias before we
 observe any data. It is common to represent this prior using a beta
 distribution. If we believe that the coin is unbiased, then we can encode this
 belief using a beta-distribution with $$\alpha=\beta$$.
 
 &lt;div class=&quot;imgcaption&quot;&gt;
     &lt;div style=&quot;width: 50%;&quot; class=&quot;imgcenter&quot;&gt;
-        &lt;img src=&quot;https://rahulramesh.info/public/imgs/refprior/beta_distribution.gif&quot; alt=&quot;beta distribution&quot;&gt;
+        &lt;img src=&quot;/public/imgs/refprior/beta_distribution.gif&quot; alt=&quot;beta distribution&quot;&gt;
     &lt;/div&gt;
     &lt;span class=&quot;caption&quot;&gt; &lt;em&gt;The beta distribution can be used to represent the prior for
     the bias of a coin. When alpha=2 and beta=5, the prior represents the belief that the coin is biased towards tails.&lt;/em&gt;&lt;/span&gt;
@@ -46,8 +46,8 @@ that dates back to the likes of Bayes and Laplace. Revisiting our earlier
 example, we may not have any particular belief regarding the bias of the coin.
 How do we represent a *state of ignorance*?
 
-A natural choice for the prior is a uniform distribution over model&apos;s
-parameters motivated by Laplace&apos;s principle for insufficient reason. This would
+A natural choice for the prior is a uniform distribution over model's
+parameters motivated by Laplace's principle for insufficient reason. This would
 correspond to a uniform distribution over the interval $$[0, 1]$$, for the bias
 of the coin. While the uniform prior seems like a reasonable choice, it is not
 considered an uninformative prior (a prior that attempts to codify ignorance).
@@ -65,7 +65,7 @@ The uniform prior is often informative, which is not desirable.
 The key idea behind uniformative priors is to operate in probability space, as
 opposed to the parameter space. If we have a probability model
 $$p_{w}(z)$$, then it is easier to specify priors using conditions on
-$$p_{w}$$ as opposed to conditions on $$w$$. The Jeffrey&apos;s prior is a
+$$p_{w}$$ as opposed to conditions on $$w$$. The Jeffrey's prior is a
 popular uniformative prior that is uniform in probability space. In this blog,
 we will focus on another closely related uninformative prior.
 
@@ -125,7 +125,7 @@ $$p=0$$ and $$p=1$$. If we have only one sample, then the 1-reference prior assi
 
 &lt;div class=&quot;imgcaption&quot;&gt;
     &lt;div style=&quot;width: 30%;&quot; class=&quot;imgcenter&quot;&gt;
-        &lt;img src=&quot;https://rahulramesh.info/public/imgs/refprior/coin_n1.png&quot; alt=&quot;ref prior n=1&quot;&gt;
+        &lt;img src=&quot;/public/imgs/refprior/coin_n1.png&quot; alt=&quot;ref prior n=1&quot;&gt;
     &lt;/div&gt;
     &lt;span class=&quot;caption&quot;&gt; &lt;em&gt;&lt;/em&gt;&lt;/span&gt;
 &lt;/div&gt;
@@ -133,7 +133,7 @@ $$p=0$$ and $$p=1$$. If we have only one sample, then the 1-reference prior assi
 
 &lt;div class=&quot;imgcaption&quot;&gt;
     &lt;div style=&quot;width: 30%;&quot; class=&quot;imgcenter&quot;&gt;
-        &lt;img src=&quot;https://rahulramesh.info/public/imgs/refprior/coin_n10.png&quot; alt=&quot;ref prior n=10&quot;&gt;
+        &lt;img src=&quot;/public/imgs/refprior/coin_n10.png&quot; alt=&quot;ref prior n=10&quot;&gt;
     &lt;/div&gt;
     &lt;span class=&quot;caption&quot;&gt; &lt;em&gt;We compute the n-reference prior for orders n=1 (top) and n=10 (bottom) for the coin-tossing example. The priors are supported on a discrete set of points.&lt;/em&gt;&lt;/span&gt;
 &lt;/div&gt;
@@ -167,9 +167,9 @@ family.
  
  <entry>
    <title>Reference Priors for Pre-training Neural Nets</title>
-   <link href="https://rahulramesh.info/blog/refprior/"/>
+   <link href="http://localhost:4000/blog/refprior/"/>
    <updated>2022-07-14T00:00:00-04:00</updated>
-   <id>https://rahulramesh.infohttps://rahulramesh.info/blog/refprior</id>
+   <id>http://localhost:4000/blog/refprior</id>
    <content type="html">&lt;p&gt;We start with the problem of estimating the bias of a coin. 
 We know that we will receive \(n\) data points&lt;/p&gt;
 
@@ -202,9 +202,9 @@ model’s weights – from unlabeled data. The prior is selected to work with sm
  
  <entry>
    <title>Model Zoos for Continual Learning</title>
-   <link href="https://rahulramesh.info/blog/modelzoo/"/>
+   <link href="http://localhost:4000/blog/modelzoo/"/>
    <updated>2022-06-24T00:00:00-04:00</updated>
-   <id>https://rahulramesh.infohttps://rahulramesh.info/blog/modelzoo</id>
+   <id>http://localhost:4000/blog/modelzoo</id>
    <content type="html">&lt;p&gt;Consider two tasks: a classification problem between strawberries and
 raspberries and another classification problem between oranges and bananas. The
 two tasks are similar and share information relevant to classification. If we can
@@ -233,7 +233,7 @@ complexity bounds &lt;a class=&quot;citation&quot; href=&quot;#baxter_inductive&
 
 &lt;div class=&quot;imgcaption&quot;&gt;
     &lt;div style=&quot;width: 30%;&quot; class=&quot;imgcenter&quot;&gt;
-        &lt;img src=&quot;https://rahulramesh.info/public/imgs/modelzoo/mtl.png&quot; alt=&quot;Multi-task Model&quot; /&gt;
+        &lt;img src=&quot;/public/imgs/modelzoo/mtl.png&quot; alt=&quot;Multi-task Model&quot; /&gt;
     &lt;/div&gt;
     &lt;span class=&quot;caption&quot;&gt; &lt;em&gt;The multi-task model proposed by Rich Caruana continues 
     to remain the most popular architecture when we want to learn from multiple
@@ -279,7 +279,7 @@ red cells in the matrix.&lt;/p&gt;
 
 &lt;div class=&quot;imgcaption&quot;&gt;
     &lt;div style=&quot;width: 55%;&quot; class=&quot;imgcenter&quot;&gt;
-        &lt;img src=&quot;https://rahulramesh.info/public/imgs/modelzoo/task_corr.svg&quot; alt=&quot;Task Distances&quot; /&gt;
+        &lt;img src=&quot;/public/imgs/modelzoo/task_corr.svg&quot; alt=&quot;Task Distances&quot; /&gt;
     &lt;/div&gt;
     &lt;span class=&quot;caption&quot;&gt; &lt;em&gt;The matrix is representative of task distances on 20 5-way
     classification tasks constructed from the CIFAR-100 dataset; Each cell is
@@ -306,7 +306,7 @@ episode. The model is trained on the new task and a subset of the past tasks
 
 &lt;div class=&quot;imgcaption&quot;&gt;
     &lt;div style=&quot;width: 70%;&quot; class=&quot;imgcenter&quot;&gt;
-        &lt;img src=&quot;https://rahulramesh.info/public/imgs/modelzoo/zoo.svg&quot; alt=&quot;Model Zoo&quot; /&gt;
+        &lt;img src=&quot;/public/imgs/modelzoo/zoo.svg&quot; alt=&quot;Model Zoo&quot; /&gt;
     &lt;/div&gt;
     &lt;span class=&quot;caption&quot;&gt; &lt;em&gt;The above figure depicts one episode of Model Zoo training.
     The training loss (at the top of the figure) is computed using the first
@@ -352,7 +352,7 @@ achieve good generalization errors.&lt;/p&gt;
 
 &lt;div class=&quot;imgcaption&quot;&gt;
     &lt;div style=&quot;width: 65%;&quot; class=&quot;imgcenter&quot;&gt;
-        &lt;img src=&quot;https://rahulramesh.info/public/imgs/modelzoo/isolated_acc.svg&quot; alt=&quot;Isolated&quot; /&gt;
+        &lt;img src=&quot;/public/imgs/modelzoo/isolated_acc.svg&quot; alt=&quot;Isolated&quot; /&gt;
     &lt;/div&gt;
     &lt;span class=&quot;caption&quot;&gt; &lt;em&gt;In the above plot, we track the accuracy averaged over all
     tasks, over 20 episodes of continual learning. Different methods are
@@ -372,12 +372,12 @@ episode and uses a replay buffer.&lt;/p&gt;
 
 &lt;div class=&quot;imgcaption&quot;&gt;
     &lt;div style=&quot;width: 65%;&quot; class=&quot;imgcenter&quot;&gt;
-        &lt;img src=&quot;https://rahulramesh.info/public/imgs/modelzoo/modelzoo_fwd_bwd.svg&quot; alt=&quot;Isolated&quot; /&gt;
+        &lt;img src=&quot;/public/imgs/modelzoo/modelzoo_fwd_bwd.svg&quot; alt=&quot;Isolated&quot; /&gt;
     &lt;/div&gt;
     &lt;span class=&quot;caption&quot;&gt; &lt;em&gt;We track the accuracy of each task from the
     Split-MiniImagenet dataset which consists of 20 5-way classification
-    problems. &apos;X&apos;, which denote the accuracy of Isolated on a new task, is
-    usually lower accuracy than Model Zoo&apos;s accuracy on the same task when it
+    problems. 'X', which denote the accuracy of Isolated on a new task, is
+    usually lower accuracy than Model Zoo's accuracy on the same task when it
     is first seen. Additionally, the accuracy of past tasks improve over
     episodes of continual learning.&lt;/em&gt;&lt;/span&gt;
 &lt;/div&gt;

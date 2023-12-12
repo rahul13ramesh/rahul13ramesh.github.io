@@ -16,18 +16,18 @@
 	</title>
 
 	<!-- CSS -->
-	<link rel="stylesheet" href="https://rahulramesh.info/public/css/poole.css">
-	<link rel="stylesheet" href="https://rahulramesh.info/public/css/syntax.css">
-	<link rel="stylesheet" href="https://rahulramesh.info/public/css/lanyon.css">
-	<link rel="stylesheet" href="https://rahulramesh.info/public/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://rahulramesh.info/public/css/custom.css">
+	<link rel="stylesheet" href="http://localhost:4000/public/css/poole.css">
+	<link rel="stylesheet" href="http://localhost:4000/public/css/syntax.css">
+	<link rel="stylesheet" href="http://localhost:4000/public/css/lanyon.css">
+	<link rel="stylesheet" href="http://localhost:4000/public/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://localhost:4000/public/css/custom.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="https://rahulramesh.info/public/favicon.ico">
+	<link rel="shortcut icon" href="http://localhost:4000/public/favicon.ico">
 
 	<!-- RSS -->
 	<link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
@@ -49,7 +49,7 @@
   </div>
 
   <nav class="sidebar-nav">
-    <a class="sidebar-nav-item active" href="https://rahulramesh.info/">Home</a>
+    <a class="sidebar-nav-item active" href="http://localhost:4000/">Home</a>
 
     
     
@@ -63,7 +63,7 @@
     
 	  
 		  
-          <a class="sidebar-nav-item" href="https://rahulramesh.info/blog/">Blog</a>
+          <a class="sidebar-nav-item" href="http://localhost:4000/blog/">Blog</a>
 		  
       
     
@@ -75,7 +75,7 @@
 	<a href="https://twitter.com/RahulRam3sh" target="_blank" class="fa fa-twitter"></a>
 	<a href="https://github.com/rahul13ramesh" target="_blank" class="fa fa-github-alt"></a>
 	<a href="https://scholar.google.com/citations?user=wCa6nygAAAAJ" target="_blank" class="fa fa-mortar-board"></a>
-    <a href="https://rahulramesh.info/atom.xml" class="fa fa-rss"></a>
+    <a href="/atom.xml" class="fa fa-rss"></a>
 	</div>
   </nav>
 </div>
@@ -97,15 +97,18 @@
       <div class="container content">
         <div class="page" >
     <h1 id="type-title" class="page-title"></h1>
-	<p><p>Hey!</p>
 
-<p>I am a Ph.D. student at the <a href="https://www.grasp.upenn.edu/" target="_blank" rel="noopener noreferrer">University of Pennsylvania</a> advised by <a href="https://pratikac.github.io/" target="_blank" rel="noopener noreferrer">Pratik Chaudhari</a>. I work on building and understanding representation learning methods for neural networks.</p>
+	<div class="profile-image col-sm-4"><img src="./public/imgs/profile2.jpeg" alt="Profile Image" /></div>
+<p>I am a 5th year CIS Ph.D. student at the University of Pennsylvania advised by <a href="https://pratikac.github.io/" target="_blank" rel="noopener noreferrer">Pratik Chaudhari</a>. I am interested in a principled data-centric view of deep learning. My research seeks to answer the following questions: (1) What data should we train on, to generalize to a specific task? (2) What characterizes the space of learnable tasks and can we specify the fundamental limits of deep learning?</p>
+
+<!-- My work spans different areas related to representation learning such as multi-task learning, meta-learning, continual learning, self-supervised learning and semi-supervised learning.  -->
 
 <p>I spent summer 2023 with NTT Research at the Harvard Center for Brain Science and worked on language models and in-context learning with <a href="https://sites.google.com/view/htanaka/home" target="_blank" rel="noopener noreferrer">Hidenori Tanaka</a>. Previously, I interned at Amazon AI labs and worked on pre-trained models for image classification with <a href="" target="_blank" rel="noopener noreferrer">Avinash Ravichandran</a> and <a href="https://aditya12agd5.github.io/" target="_blank" rel="noopener noreferrer">Aditya Deshpande</a>.</p>
 
-<p>I graduated from the <a href="https://iitm.ac.in" target="_blank" rel="noopener noreferrer">Indian Institute of Technology Madras</a> in 2019 with a Dual
-degree (Bachelor’s and Master’s) in computer science with a minor in physics. I was advised by <a href="https://www.cse.iitm.ac.in/~ravi/" target="_blank" rel="noopener noreferrer">Balaraman Ravindran</a> and worked on building hierarchical abstractions for reinforcement learning.</p>
-</p>
+<p>I graduated from <a href="https://iitm.ac.in" target="_blank" rel="noopener noreferrer">IIT Madras</a> in 2019, at the top of my class, with a dual degree in computer science and a minor in physics. I was advised by <a href="https://www.cse.iitm.ac.in/~ravi/" target="_blank" rel="noopener noreferrer">Balaraman Ravindran</a> and worked on building hierarchical representations for reinforcement learning using successor representations.</p>
+
+<p><b>I am currently on the job market and am looking for full-time and post-doc opportunities!</b></p>
+
 </div>
 
 <div class="container">
@@ -136,16 +139,41 @@ degree (Bachelor’s and Master’s) in computer science with a minor in physics
 </div>
 
 <br>
-<!-- <p> -->
-<!-- I recently started a -->
-<!--     <a href="https://rahulramesh.info/blog"> -->
-<!--         <i style='padding:0px;width:20px' class="fa fa-pencil" -->
-<!--             aria-hidden="true"></i>blog</a>. -->
-<!-- </p> -->
+<br>
+
 
 <h1 id="type-title" class="page-title">Select Publications</h1>
 
 <div class="container">
+    
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="pubtitle">
+                How Capable Can a Transformer Become? A Study on Synthetic, Interpretable Tasks
+                </div>
+            <div class="author">
+                <u>Rahul Ramesh</u>, <a href="https://mikailkhona.github.io">Mikail Khona</a>, <a href="http://robertdick.org/">Robert P. Dick</a>, <a href="https://sites.google.com/view/htanaka/home">Hidenori Tanaka</a>, <a href="https://ekdeepslubana.github.io/">Ekdeep Singh Lubana</a>
+            </div>
+            <div class="pubconf">
+                NeurIPS 23 workshop on Robustness of Few-shot Learning in Large Foundation Models
+            </div>
+            <div class="links">
+                
+                     
+                    <a class="darklink" href="https://arxiv.org/abs/2311.12997">
+                        <button class="button1">
+                            ArXiv
+                        </button>
+                    </a>
+                    
+                
+            </div>
+            
+                
+            
+        </div>
+    </div>
+    <br>
     
     <div class="row">
         <div class="col-sm-12">
@@ -176,7 +204,7 @@ degree (Bachelor’s and Master’s) in computer science with a minor in physics
                     
                 
                      
-                    <a class="darklink" href="https://github.com/grasp-lyrl/modelzoo_continual">
+                    <a class="darklink" href="https://github.com/grasp-lyrl/picture_of_space_of_tasks">
                         <button class="button1">
                             Code
                         </button>
@@ -202,7 +230,7 @@ degree (Bachelor’s and Master’s) in computer science with a minor in physics
                             <i id="copy-A Picture of the Space of Typical Learnable Tasks"class="fa fa-clipboard" aria-hidden="true"></i>
                         </span>
                     </div>
-                    <pre id="code-A Picture of the Space of Typical Learnable Tasks" class="pubtex highlight"> @InProceedings{pmlr-v202-ramesh23a,
+                    <pre id="code-A Picture of the Space of Typical Learnable Tasks" class="pubtex highlight"> @inproceedings{pmlr-v202-ramesh23a,
   title={A Picture of the Space of Typical Learnable Tasks},
   author =Ramesh, Rahul and Mao, Jialin and Griniasty, Itay and Yang, Rubing and Teoh, Han Kheng and Transtrum, Mark and Sethna, James and Chaudhari, Pratik},
   booktitle={Proceedings of the 40th International Conference on Machine Learning},
@@ -214,7 +242,7 @@ degree (Bachelor’s and Master’s) in computer science with a minor in physics
   month={23--29 Jul},
   publisher={PMLR},
   pdf={https://proceedings.mlr.press/v202/ramesh23a/ramesh23a.pdf},
-  url={https://proceedings.mlr.press/v202/ramesh23a.html},
+  url={https://proceedings.mlr.press/v202/ramesh23a.html}
 }
 </pre>
                 </div>
@@ -273,7 +301,7 @@ degree (Bachelor’s and Master’s) in computer science with a minor in physics
                     
                 
                      
-                    <a class="darklink" href="https://rahulramesh.info/blog/modelzoo">
+                    <a class="darklink" href="/blog/modelzoo">
                         <button class="button1">
                             Blog
                         </button>
@@ -305,77 +333,6 @@ degree (Bachelor’s and Master’s) in computer science with a minor in physics
             
                 
             
-                
-            
-                
-            
-        </div>
-    </div>
-    <br>
-    
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="pubtitle">
-                The Value of Out-of-distribution Data
-                </div>
-            <div class="author">
-                <a href="https://laknath1996.github.io/" target="_blank" rel="noopener noreferrer">Ashwin De Silva*</a>, <u>Rahul Ramesh*</u>, <a href="https://www.ams.jhu.edu/~priebe/" target="_blank" rel="noopener noreferrer">Carey E. Priebe</a>, <a href="https://pratikac.github.io" target="_blank" rel="noopener noreferrer">Pratik Chaudhari</a>, <a href="https://jovo.me" target="_blank" rel="noopener noreferrer">Joshua T. Vogelstein</a>
-            </div>
-            <div class="pubconf">
-                ICML 2023
-            </div>
-            <div class="links">
-                
-                     
-                    <a class="darklink" href="https://arxiv.org/abs/2208.10967">
-                        <button class="button1">
-                            ArXiv
-                        </button>
-                    </a>
-                    
-                
-                    
-                        <button onclick="toggleContent('The Value of Out-of-distribution Data')"
-                                class="button1">
-                            BibTeX
-                        </button> 
-                    
-                
-                     
-                    <a class="darklink" href="https://github.com/neurodata/value-of-ood-data">
-                        <button class="button1">
-                            Code
-                        </button>
-                    </a>
-                    
-                
-            </div>
-            
-                
-            
-                
-                <div class="" style="padding:0em;display:none;position:relative;" id="The Value of Out-of-distribution Data">
-                    <div class="command-copy">
-                        <span onclick="copyEvent('The Value of Out-of-distribution Data')">
-                            <i id="copy-The Value of Out-of-distribution Data"class="fa fa-clipboard" aria-hidden="true"></i>
-                        </span>
-                    </div>
-                    <pre id="code-The Value of Out-of-distribution Data" class="pubtex highlight"> @InProceedings{pmlr-v202-de-silva23a,
-  title={The Value of Out-of-Distribution Data},
-  author={De Silva, Ashwin and Ramesh, Rahul and Priebe, Carey and Chaudhari, Pratik and Vogelstein, Joshua T},
-  booktitle={Proceedings of the 40th International Conference on Machine Learning},
-  pages={7366--7389},
-  year={2023},
-  editor={Krause, Andreas and Brunskill, Emma and Cho, Kyunghyun and Engelhardt, Barbara and Sabato, Sivan and Scarlett, Jonathan},
-  volume={202},
-  series={Proceedings of Machine Learning Research},
-  month={23--29 Jul},
-  publisher={PMLR},
-  pdf={https://proceedings.mlr.press/v202/de-silva23a/de-silva23a.pdf},
-  url={https://proceedings.mlr.press/v202/de-silva23a.html},
-}
-</pre>
-                </div>
                 
             
                 
@@ -439,6 +396,78 @@ degree (Bachelor’s and Master’s) in computer science with a minor in physics
   author={Gao, Yansong and Ramesh, Rahul and Chaudhari, Pratik},
   journal={arXiv preprint arXiv:2202.00187},
   year={2022}
+}
+</pre>
+                </div>
+                
+            
+                
+            
+        </div>
+    </div>
+    <br>
+    
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="pubtitle">
+                The Value of Out-of-Distribution Data
+                </div>
+            <div class="author">
+                <a href="https://laknath1996.github.io/" target="_blank" rel="noopener noreferrer">Ashwin De Silva*</a>, <u>Rahul Ramesh*</u>, <a href="https://www.ams.jhu.edu/~priebe/" target="_blank" rel="noopener noreferrer">Carey E. Priebe</a>, <a href="https://pratikac.github.io" target="_blank" rel="noopener noreferrer">Pratik Chaudhari</a>, <a href="https://jovo.me" target="_blank" rel="noopener noreferrer">Joshua T. Vogelstein</a>
+
+            </div>
+            <div class="pubconf">
+                ICML 2023
+            </div>
+            <div class="links">
+                
+                     
+                    <a class="darklink" href="https://arxiv.org/abs/2208.10967">
+                        <button class="button1">
+                            ArXiv
+                        </button>
+                    </a>
+                    
+                
+                    
+                        <button onclick="toggleContent('The Value of Out-of-Distribution Data')"
+                                class="button1">
+                            BibTeX
+                        </button> 
+                    
+                
+                     
+                    <a class="darklink" href="https://github.com/neurodata/value-of-ood-data">
+                        <button class="button1">
+                            Code
+                        </button>
+                    </a>
+                    
+                
+            </div>
+            
+                
+            
+                
+                <div class="" style="padding:0em;display:none;position:relative;" id="The Value of Out-of-Distribution Data">
+                    <div class="command-copy">
+                        <span onclick="copyEvent('The Value of Out-of-Distribution Data')">
+                            <i id="copy-The Value of Out-of-Distribution Data"class="fa fa-clipboard" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <pre id="code-The Value of Out-of-Distribution Data" class="pubtex highlight"> @inproceedings{pmlr-v202-de-silva23a,
+  title={The Value of Out-of-Distribution Data},
+  author={De Silva, Ashwin and Ramesh, Rahul and Priebe, Carey and Chaudhari, Pratik and Vogelstein, Joshua T},
+  booktitle={Proceedings of the 40th International Conference on Machine Learning},
+  pages={7366--7389},
+  year={2023},
+  editor={Krause, Andreas and Brunskill, Emma and Cho, Kyunghyun and Engelhardt, Barbara and Sabato, Sivan and Scarlett, Jonathan},
+  volume={202},
+  series={Proceedings of Machine Learning Research},
+  month={23--29 Jul},
+  publisher={PMLR},
+  pdf={https://proceedings.mlr.press/v202/de-silva23a/de-silva23a.pdf},
+  url={https://proceedings.mlr.press/v202/de-silva23a.html},
 }
 </pre>
                 </div>
