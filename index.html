@@ -16,18 +16,18 @@
 	</title>
 
 	<!-- CSS -->
-	<link rel="stylesheet" href="/public/css/poole.css">
-	<link rel="stylesheet" href="/public/css/syntax.css">
-	<link rel="stylesheet" href="/public/css/lanyon.css">
-	<link rel="stylesheet" href="/public/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/public/css/custom.css">
+	<link rel="stylesheet" href="http://localhost:4000/public/css/poole.css">
+	<link rel="stylesheet" href="http://localhost:4000/public/css/syntax.css">
+	<link rel="stylesheet" href="http://localhost:4000/public/css/lanyon.css">
+	<link rel="stylesheet" href="http://localhost:4000/public/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://localhost:4000/public/css/custom.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="/public/favicon.ico">
+	<link rel="shortcut icon" href="http://localhost:4000/public/favicon.ico">
 
 	<!-- RSS -->
 	<link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
@@ -49,7 +49,7 @@
   </div>
 
   <nav class="sidebar-nav">
-    <a class="sidebar-nav-item active" href="/">Home</a>
+    <a class="sidebar-nav-item active" href="http://localhost:4000/">Home</a>
 
     
     
@@ -63,7 +63,7 @@
     
 	  
 		  
-          <a class="sidebar-nav-item" href="/blog/">Blog</a>
+          <a class="sidebar-nav-item" href="http://localhost:4000/blog/">Blog</a>
 		  
       
     
@@ -75,7 +75,7 @@
 	<a href="https://twitter.com/RahulRam3sh" target="_blank" class="fa fa-twitter"></a>
 	<a href="https://github.com/rahul13ramesh" target="_blank" class="fa fa-github-alt"></a>
 	<a href="https://scholar.google.com/citations?user=wCa6nygAAAAJ" target="_blank" class="fa fa-mortar-board"></a>
-    <a href="https://rahulramesh.info/atom.xml" class="fa fa-rss"></a>
+    <a href="/atom.xml" class="fa fa-rss"></a>
 	</div>
   </nav>
 </div>
@@ -99,11 +99,13 @@
     <h1 id="type-title" class="page-title"></h1>
 
 	<div class="profile-image col-sm-4"><img src="./public/imgs/profile2.jpeg" alt="Profile Image" /></div>
-<p>I am a 5th year CIS Ph.D. student at the University of Pennsylvania advised by <a href="https://pratikac.github.io/" target="_blank" rel="noopener noreferrer">Pratik Chaudhari</a>. I am interested in a principled data-centric view of deep learning. My research seeks to answer questions like: (1) What data should we train on, to generalize to a specific task? (2) What are properties of data that lead to successful representation learning (3) How does data change with time and how should models adapt?</p>
+<p>I am a 5th year CIS Ph.D. student at the University of Pennsylvania advised by <a href="https://pratikac.github.io/" target="_blank" rel="noopener noreferrer">Pratik Chaudhari</a>. I am interested in a principled data-centric view of deep learning. My research seeks to answer questions like: (1) What do “typical” learnable tasks look like? (2) How do we build optimal representations from unlabeled data? (3) How does data change over time and how should models adapt?</p>
+
+<p>A theme the spans my work is the idea of task competition, i.e., <em>all</em> tasks need not share an optimal representation and we should instead train on data from a related subset of tasks.</p>
 
 <!-- My work spans different areas related to representation learning such as multi-task learning, meta-learning, continual learning, self-supervised learning and semi-supervised learning.  -->
 
-<p>I spent summer 2023 with NTT Research at the Harvard Center for Brain Science and worked on language models and in-context learning with <a href="https://sites.google.com/view/htanaka/home" target="_blank" rel="noopener noreferrer">Hidenori Tanaka</a>. Previously, I interned at Amazon AI labs and worked on pre-trained models for image classification with <a href="" target="_blank" rel="noopener noreferrer">Avinash Ravichandran</a> and <a href="https://aditya12agd5.github.io/" target="_blank" rel="noopener noreferrer">Aditya Deshpande</a>.</p>
+<p>I spent summer 2023 with NTT Research at the Harvard Center for Brain Science and worked on understanding why language models are able to solve many different tasks with <a href="https://sites.google.com/view/htanaka/home" target="_blank" rel="noopener noreferrer">Hidenori Tanaka</a>. Previously, I interned at Amazon AI labs and worked on pre-trained models for image classification with <a href="" target="_blank" rel="noopener noreferrer">Avinash Ravichandran</a> and <a href="https://aditya12agd5.github.io/" target="_blank" rel="noopener noreferrer">Aditya Deshpande</a>.</p>
 
 <p>I graduated from <a href="https://iitm.ac.in" target="_blank" rel="noopener noreferrer">IIT Madras</a> in 2019, at the top of my class, with a dual degree in computer science and a minor in physics. I was advised by <a href="https://www.cse.iitm.ac.in/~ravi/" target="_blank" rel="noopener noreferrer">Balaraman Ravindran</a> and worked on building hierarchical representations for reinforcement learning using successor representations.</p>
 
@@ -152,10 +154,10 @@
                 How Capable Can a Transformer Become? A Study on Synthetic, Interpretable Tasks
                 </div>
             <div class="author">
-                <u>Rahul Ramesh</u>, <a href="https://mikailkhona.github.io">Mikail Khona</a>, <a href="http://robertdick.org/">Robert P. Dick</a>, <a href="https://sites.google.com/view/htanaka/home">Hidenori Tanaka</a>, <a href="https://ekdeepslubana.github.io/">Ekdeep Singh Lubana</a>
+                <u>Rahul Ramesh</u>, <a href="https://ekdeepslubana.github.io/">Ekdeep Singh Lubana</a>, <a href="https://mikailkhona.github.io">Mikail Khona</a>, <a href="http://robertdick.org/">Robert P. Dick</a>, <a href="https://sites.google.com/view/htanaka/home">Hidenori Tanaka</a>
             </div>
             <div class="pubconf">
-                NeurIPS 23 workshop on Robustness of Few-shot Learning in Large Foundation Models
+                ICML 2024
             </div>
             <div class="links">
                 
@@ -167,7 +169,49 @@
                     </a>
                     
                 
+                    
+                        <button onclick="toggleContent('How Capable Can a Transformer Become? A Study on Synthetic, Interpretable Tasks')"
+                                class="button1">
+                            BibTeX
+                        </button> 
+                    
+                
+                     
+                    <a class="darklink" href="https://github.com/rahul13ramesh/compositional_capabilities">
+                        <button class="button1">
+                            Code
+                        </button>
+                    </a>
+                    
+                
             </div>
+            
+                
+            
+                
+                <div class="" style="padding:0em;display:none;position:relative;" id="How Capable Can a Transformer Become? A Study on Synthetic, Interpretable Tasks">
+                    <div class="command-copy">
+                        <span onclick="copyEvent('How Capable Can a Transformer Become? A Study on Synthetic, Interpretable Tasks')">
+                            <i id="copy-How Capable Can a Transformer Become? A Study on Synthetic, Interpretable Tasks"class="fa fa-clipboard" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <pre id="code-How Capable Can a Transformer Become? A Study on Synthetic, Interpretable Tasks" class="pubtex highlight"> @InProceedings{pmlr-v235-ramesh24a,
+  title = 	 {Compositional Capabilities of Autoregressive Transformers: A Study on Synthetic, Interpretable Tasks},
+  author =       {Ramesh, Rahul and Lubana, Ekdeep Singh and Khona, Mikail and Dick, Robert P. and Tanaka, Hidenori},
+  booktitle = 	 {Proceedings of the 41st International Conference on Machine Learning},
+  pages = 	 {42074--42103},
+  year = 	 {2024},
+  editor = 	 {Salakhutdinov, Ruslan and Kolter, Zico and Heller, Katherine and Weller, Adrian and Oliver, Nuria and Scarlett, Jonathan and Berkenkamp, Felix},
+  volume = 	 {235},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {21--27 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {https://raw.githubusercontent.com/mlresearch/v235/main/assets/ramesh24a/ramesh24a.pdf},
+  url = 	 {https://proceedings.mlr.press/v235/ramesh24a.html},
+}
+</pre>
+                </div>
+                
             
                 
             
@@ -301,7 +345,7 @@
                     
                 
                      
-                    <a class="darklink" href="https://rahulramesh.info/blog/modelzoo">
+                    <a class="darklink" href="/blog/modelzoo">
                         <button class="button1">
                             Blog
                         </button>
